@@ -1,0 +1,6 @@
+feedparser
+python-dotenv
+requests
+newspaper3k
+html5lib
+lxml
