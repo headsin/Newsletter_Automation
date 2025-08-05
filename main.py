@@ -27,7 +27,22 @@ RSS_FEEDS = [
     "https://blog.internshala.com/feed/",
     "https://blog.linkedin.com/feed",
     "https://blog.indeed.com/feed/", 
-    "https://www.workitdaily.com/feeds/blog.rss"
+    "https://www.workitdaily.com/feeds/blog.rss",
+    "https://www.themuse.com/feed",
+    "https://weworkremotely.com/categories/remote-programming-jobs.rss",
+    "https://www.freelancerfaqs.com/feed/",
+    "https://www.glassdoor.com/blog/feed/",
+    "https://www.careershifters.org/rss.xml",
+    "https://fairygodboss.com/articles/feed",
+    "https://careersidekick.com/feed/",
+    "https://www.collegexpress.com/rss/blog/",
+    "https://resumegenius.com/blog/feed",
+    "https://zapier.com/blog/rss.xml",
+    "https://foundr.com/feed",
+    "https://yourstory.com/feed",
+    "https://www.sarkariresult.com/feed/",
+    "https://internshala.com/feed",
+    "https://edtimes.in/feed/"
 ]
 
 # === Extract image from article ===
