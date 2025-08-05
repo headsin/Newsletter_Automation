@@ -175,7 +175,7 @@ Articles:
             print(f"AI Response: {ai_response[:500]}...")
             # Fallback: use first 10 articles
             print("🔄 Using fallback selection...")
-            return articles[:10]
+            return articles[:5]
         
         # Build final articles list with AI rankings
         final_articles = []
@@ -211,7 +211,7 @@ Articles:
     except Exception as e:
         print(f"❌ AI ranking error: {e}")
         # Fallback: return first 10 articles if AI fails
-        return articles[:10]
+        return articles[:5]
 
 # === Generate HTML Newsletter ===
 def generate_html(articles):
