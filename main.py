@@ -340,7 +340,7 @@ def send_newsletter_via_heads_in(html_template):
     payload = {
         "template": html_template,
         "password": HEADSIN_PASSWORD,
-        "sendTo": [TO_EMAIL],
+        "sendTo": [],
         "placeholders": ["{{unsubscribeUrl}}"]
     }
 
