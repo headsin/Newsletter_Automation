@@ -14,36 +14,23 @@ AZURE_OPENAI_API_KEY = os.getenv("AZURE_OPENAI_API_KEY")
 AZURE_OPENAI_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")
 AZURE_OPENAI_API_VERSION = os.getenv("AZURE_OPENAI_API_VERSION")
 TO_EMAIL = os.getenv("TO_EMAIL")
-HEADSIN_PASSWORD = os.getenv("HEADSIN_PASSWORD")
+HEADSIN_PASSWORD = "sJYlSh9xKM4K40"
 
 
 RSS_FEEDS = [
-    "https://collegeinfogeek.com/feed/",
-    "https://buddymantra.com/category/career/feed/",
-    "https://globalcareercounsellor.com/blog/feed/",
-    "https://www.wayup.com/guide/feed/",
-    "https://www.workitdaily.com/feeds/blog.rss",
-    "https://www.askamanager.org/feed",
-    "https://blog.internshala.com/feed/",
-    "https://blog.linkedin.com/feed",
-    "https://blog.indeed.com/feed/", 
-    "https://www.workitdaily.com/feeds/blog.rss",
-    "https://www.themuse.com/feed",
-    "https://weworkremotely.com/categories/remote-programming-jobs.rss",
-    "https://www.freelancerfaqs.com/feed/",
-    "https://www.glassdoor.com/blog/feed/",
-    "https://www.careershifters.org/rss.xml",
-    "https://fairygodboss.com/articles/feed",
-    "https://careersidekick.com/feed/",
-    "https://www.collegexpress.com/rss/blog/",
-    "https://resumegenius.com/blog/feed",
-    "https://zapier.com/blog/rss.xml",
-    "https://foundr.com/feed",
-    "https://yourstory.com/feed",
-    "https://www.sarkariresult.com/feed/",
-    "https://internshala.com/feed",
-    "https://edtimes.in/feed/"
+    "https://economictimes.indiatimes.com/jobs/fresher/rssfeeds/97860609.cms",
+    "https://economictimes.indiatimes.com/jobs/mid-career/rssfeeds/97860586.cms",
+    "https://economictimes.indiatimes.com/jobs/rssfeeds/107115.cms",
+    "https://hr.economictimes.indiatimes.com/rss/workplace-4-0/employee-engagement"
 ]
+
+def clean_summary_paragraph(text):
+    import re
+    text = re.sub(r'\s*\n\s*', ' ', text)      # Replace newlines with space
+    text = re.sub(r'\s{2,}', ' ', text).strip()  # Collapse multiple spaces
+    return text
+
+
 
 # === Extract image from article ===
 def extract_image(url):
@@ -149,7 +136,7 @@ Articles:
             json={
                 "messages": [{"role": "user", "content": prompt}],
                 "temperature": 0.3, 
-                "max_tokens": 3500,
+                "max_tokens": 4000,
                 "top_p": 0.9,
             },
             params={"api-version": AZURE_OPENAI_API_VERSION},
@@ -175,7 +162,7 @@ Articles:
             print(f"AI Response: {ai_response[:500]}...")
             # Fallback: use first 10 articles
             print("🔄 Using fallback selection...")
-            return articles[:5]
+            return articles[:10]
         
         # Build final articles list with AI rankings
         final_articles = []
@@ -211,7 +198,7 @@ Articles:
     except Exception as e:
         print(f"❌ AI ranking error: {e}")
         # Fallback: return first 10 articles if AI fails
-        return articles[:5]
+        return articles[:10]
 
 # === Generate HTML Newsletter ===
 def generate_html(articles):
@@ -340,7 +327,7 @@ def send_newsletter_via_heads_in(html_template):
     payload = {
         "template": html_template,
         "password": HEADSIN_PASSWORD,
-        "sendTo": [],
+        "sendTo": [TO_EMAIL],
         "placeholders": ["{{unsubscribeUrl}}"]
     }
 
